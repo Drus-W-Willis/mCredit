@@ -34,5 +34,13 @@ export default route<StateInterface>(function (/* { store, ssrContext } */) {
     ),
   });
 
+  Router.beforeEach((to, from, next) => {
+    if(to.matched[0].meta.reqAuthorization) {
+      next('/login')
+    } else
+    next();
+  });
+
   return Router;
+
 });
